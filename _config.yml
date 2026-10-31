@@ -1,0 +1,7 @@
+# GitHub Pages — 사이트에는 README와 개인정보처리방침만 올린다. 소스 압축본은 저장소에서 받는다.
+title: Blueon
+exclude:
+  - ffmpeg
+  - lame
+  - libass
+  - SHA256SUMS
