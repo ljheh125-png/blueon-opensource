@@ -1,6 +1,8 @@
 ---
-title: Blueon 개인정보처리방침
+title: Blueon 개인정보처리방침 / Privacy Policy
 ---
+
+[English version below](#blueon-privacy-policy)
 
 # Blueon 개인정보처리방침
 
@@ -118,6 +120,114 @@ Crashlytics가 수집하는 정보는 Google의 처리 방침을 따릅니다:
 본 방침이 변경되는 경우 이 페이지에 변경 내용과 시행일을 게시합니다.
 
 ## 11. 문의
+
+dayvi editor
+ljheh125@gmail.com
+
+---
+
+# Blueon Privacy Policy
+
+Effective date: October 31, 2026
+
+Blueon ("the app") takes your privacy seriously. This policy explains what information the app handles, what leaves your device, and what does not.
+
+If this English text and the Korean text differ, the Korean text applies.
+
+## 1. At a glance
+
+- The app has **no sign-up and no accounts.**
+- **Your videos and music are processed on your device and are never sent to the developer's servers.** They go to another device or app only when you use wireless file transfer or sharing yourself, and only to the device or app you choose.
+- Playback history and playlists are **stored only on your device.** Some settings may be included in your Android backup (section 9).
+- **Diagnostic information** is sent when the app crashes, when an error occurs, or when playback stalls for a long time.
+- The app **shows no ads** (section 5).
+
+## 2. Information handled on your device
+
+All of the following is **stored only on your device and is not sent anywhere.**
+
+| What | Why |
+|---|---|
+| The list of videos and music on your device and their details (title, length, size, path) | To show them in lists and play them |
+| Playback position, history, favorites, playlists, bookmarks | For resume and list features |
+| Settings (theme, subtitle size and color, playback mode, brightness and so on) | To keep them for next time |
+| Cover images you choose | To show them in lists |
+| Network video addresses you opened (recent addresses) | To make them easy to open again |
+| Sound you record yourself in the editor | To add it to the video you are making |
+
+This information is removed when you delete the app.
+
+## 3. Information that leaves your device (diagnostics)
+
+The app uses **Google Firebase Crashlytics** to improve stability. The information below is sent when the app crashes, when an error occurs that the app recovers from (for example, a file cannot be read), or when playback preparation stalls for more than 20 seconds. Crashlytics may also send app session information to produce error statistics.
+
+- Where and why the error occurred (stack trace)
+- Device model, Android version, app version, device language and region
+- An app installation identifier (a random value created by Crashlytics that does not identify you)
+- A short label showing what the app was doing just before the error (for example, `[Convert]`, `[Subtitle display]`, media format and codec names, file extension)
+- If playback stalled: playback position and total length, media format and codec, picture size, and the address type (for example, `content`)
+
+**What is not sent:**
+
+- Your video, music or image **files or their contents**
+- **File names, folder paths, song titles, artists or other information read from your files**
+- Your name, phone number, email address, postal address or anything else that identifies you
+- Location, contacts, call logs, or behavior tracking based on an advertising ID
+- Usage statistics such as screens visited or buttons pressed (the app has no analytics tool)
+
+If an error message might contain a file path or name, that message is removed before sending.
+
+Crashlytics information is handled under Google's privacy policy: <https://firebase.google.com/support/privacy>
+
+## 4. When you enter an address or search the web
+
+You can enter an internet address in the app to play it. When you do, **the app connects directly to the server at that address.** The developer does not collect the address or the connection record, and that server's operator is responsible for its own privacy practices.
+
+When you look for lyrics or subtitles and tap web search, a search phrase filled in with the song or video title goes to **Google Search** in a web view inside the app. This search is covered by Google's privacy policy.
+
+## 5. Ads and in-app purchases
+
+The app **shows no ads**, contains no advertising SDK and does not use the Advertising ID. If ads are added in the future, **this policy will be updated and published first.**
+
+No in-app products are currently on sale. If products are sold in the future, **Google Play** will handle payment, and the app will not receive your payment details. Google Play's privacy policy: <https://policies.google.com/privacy>
+
+## 6. Wireless file transfer
+
+When you turn on wireless file transfer, your phone briefly opens a connection so that **a web browser on a PC on the same Wi-Fi** can exchange files with it.
+
+- Files travel **only between your phone and that PC**, not through the developer or any other server.
+- Only a browser that enters the 6-digit code shown on screen can connect.
+- This connection is **not encrypted.** Use it only on a Wi-Fi network you trust.
+- The connection closes by itself if the Wi-Fi changes or after 15 minutes without use.
+
+## 7. Why the app uses each permission
+
+| Permission | Why it is needed |
+|---|---|
+| Photos, videos and music | To find media on your device, list it and play it |
+| All files access (optional) | To find subtitle files next to videos and lyrics files next to songs, and to list formats Android does not classify as media. Playback works without it. With it, the system confirmation does not appear when you delete files |
+| Notifications | For playback controls and for progress and completion of editing and wireless transfer |
+| Microphone (optional) | To record sound only during a recording you start in the editor, and add it to your video. Recordings stay on your device. Everything else works without it |
+| Internet | For playing from an address, wireless file transfer, lyrics and subtitle web search, downloading the editing materials (sound effects, music), fonts and caption models you choose, and sending diagnostics |
+| Modify system settings | To set a song you choose as your ringtone |
+
+Permissions are used only when you use the related feature. If you refuse one, the other features keep working.
+
+## 8. Children
+
+The app is not intended for children under 14 and does not knowingly collect their personal information.
+
+## 9. Storage and deletion
+
+Information stored on your device is deleted when you delete the app. Diagnostic information is deleted after a period set by Google's retention policy.
+
+If Google backup is turned on for your device, some app settings may be included in the backup of your Google account. Playback history, playlists, projects and lyrics files are excluded from backup.
+
+## 10. Changes to this policy
+
+If this policy changes, the changes and the effective date will be posted on this page.
+
+## 11. Contact
 
 dayvi editor
 ljheh125@gmail.com
