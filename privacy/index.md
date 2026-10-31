@@ -18,7 +18,6 @@ Blueon(이하 "본 앱")은 이용자의 개인정보를 소중히 다룹니다.
   이용자가 무선 파일 전송이나 공유 기능을 직접 사용할 때에만, 이용자가 고른 기기나 앱으로 전달됩니다.
 - 재생 기록·재생목록은 **기기에만 저장**되고, 설정 일부는 이용자의 안드로이드 백업에 포함될 수 있습니다(9절).
 - 앱이 비정상 종료되거나 오류가 나거나 재생이 오래 멈췄을 때 **진단 정보**가 전송됩니다.
-- 본 앱은 **광고를 표시하지 않습니다**(5절).
 
 ## 2. 본 앱이 기기에서 다루는 정보
 
@@ -73,7 +72,7 @@ Crashlytics가 수집하는 정보는 Google의 처리 방침을 따릅니다:
 
 ## 5. 광고와 앱 안 구매
 
-본 앱은 **광고를 표시하지 않으며**, 광고 SDK가 들어 있지 않고 광고 식별자(Advertising ID)를 사용하지 않습니다.
+현재 본 앱에는 **광고가 없으며**, 광고 SDK가 들어 있지 않고 광고 식별자(Advertising ID)를 사용하지 않습니다.
 앞으로 광고를 넣게 되는 경우에는 **이 방침을 먼저 고쳐 게시한 뒤** 적용합니다.
 
 현재 판매하는 앱 안 상품은 없습니다. 앞으로 상품을 판매하는 경우 결제는 **Google Play**가 처리하며,
@@ -140,7 +139,6 @@ If this English text and the Korean text differ, the Korean text applies.
 - **Your videos and music are processed on your device and are never sent to the developer's servers.** They go to another device or app only when you use wireless file transfer or sharing yourself, and only to the device or app you choose.
 - Playback history and playlists are **stored only on your device.** Some settings may be included in your Android backup (section 9).
 - **Diagnostic information** is sent when the app crashes, when an error occurs, or when playback stalls for a long time.
-- The app **shows no ads** (section 5).
 
 ## 2. Information handled on your device
 
@@ -187,7 +185,7 @@ When you look for lyrics or subtitles and tap web search, a search phrase filled
 
 ## 5. Ads and in-app purchases
 
-The app **shows no ads**, contains no advertising SDK and does not use the Advertising ID. If ads are added in the future, **this policy will be updated and published first.**
+The app **currently has no ads**, contains no advertising SDK and does not use the Advertising ID. If ads are added in the future, **this policy will be updated and published first.**
 
 No in-app products are currently on sale. If products are sold in the future, **Google Play** will handle payment, and the app will not receive your payment details. Google Play's privacy policy: <https://policies.google.com/privacy>
 
