@@ -54,7 +54,7 @@ cmake -S lame -B out/lame -G Ninja \
 cmake --build out/lame
 ```
 
-To rebuild `libass.so`, follow `libass-cmake` in `libass/`. Its `src/` folders are git submodules, so unpack the archives in `libass/` into them.
+To rebuild `libass.so` you need Linux with autotools. `.github/workflows/rebuild-libass.yml` runs every step from the archives in `libass/`, so you can follow it or run it in a fork.
 
 ## Replace a library in the app
 

@@ -1,0 +1,84 @@
+# Rebuilds libass.so from the archives in libass/ alone and compares it with the published package.
+name: Rebuild libass.so
+
+on:
+  push:
+    paths:
+      - 'libass/**'
+      - '.github/workflows/rebuild-libass.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  ABI: x86_64
+  NDK_VERSION: 28.1.13356709
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gperf gettext autopoint autoconf automake libtool pkg-config ninja-build
+          yes | "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" "ndk;$NDK_VERSION" > /dev/null
+          echo "NDK=$ANDROID_SDK_ROOT/ndk/$NDK_VERSION" >> "$GITHUB_ENV"
+
+      - name: Unpack the archives
+        run: |
+          mkdir work
+          tar xzf libass/libass-android-v0.5.1.tar.gz -C work --strip-components=1
+          CPP="$PWD/work/lib_ass/src/main/cpp"
+          CMAKE="$CPP/libass-cmake"
+          mkdir -p "$CMAKE"
+          tar xzf libass/libass-cmake-d3f00a43.tar.gz -C "$CMAKE" --strip-components=1
+          for pair in ass:libass-bbb3c7f1 fribidi:fribidi-68162bab freetype:freetype-42608f77 harfbuzz:harfbuzz-c3fcbffa \
+                      fontconfig:fontconfig-daa175d2 expat:expat-f9a3eeb3 unibreak:unibreak-304585d8; do
+            dir="$CMAKE/src/${pair%%:*}"
+            mkdir -p "$dir"
+            tar xzf "libass/${pair##*:}.tar.gz" -C "$dir" --strip-components=1
+          done
+          echo "CPP=$CPP" >> "$GITHUB_ENV"
+          echo "CMAKE_DIR=$CMAKE" >> "$GITHUB_ENV"
+
+      - name: Generate configure scripts
+        run: |
+          ( cd "$CMAKE_DIR/src/unibreak" && NOCONFIGURE=1 ./autogen.sh )
+          ( cd "$CMAKE_DIR/src/fribidi" && NOCONFIGURE=1 ./autogen.sh )
+          ( cd "$CMAKE_DIR/src/fontconfig" && NOCONFIGURE=1 ./autogen.sh )
+          ( cd "$CMAKE_DIR/src/ass" && ./autogen.sh )
+          ( cd "$CMAKE_DIR/src/expat/expat" && ./buildconf.sh )
+
+      - name: Build
+        run: |
+          cmake -S "$CPP" -B out -G Ninja \
+            -DCMAKE_TOOLCHAIN_FILE="$NDK/build/cmake/android.toolchain.cmake" \
+            -DANDROID_NDK="$NDK" -DANDROID_ABI=$ABI -DANDROID_PLATFORM=android-21 -DANDROID_STL=c++_shared \
+            -DCMAKE_BUILD_TYPE=Release 2>&1 | tee build.log
+          cmake --build out 2>&1 | tee -a build.log
+          test "${PIPESTATUS[0]}" -eq 0
+
+      - name: Compare with the published package
+        run: |
+          curl -sSfL -o ass.aar https://repo1.maven.org/maven2/io/github/peerless2012/ass/0.5.1/ass-0.5.1.aar
+          unzip -p ass.aar "prefab/modules/ass/libs/android.$ABI/libass.so" > published.so
+          NM="$NDK/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-nm"
+          rebuilt="$(find out -name libass.so | head -1)"
+          "$NM" -D --defined-only published.so | awk '{print $NF}' | sort -u > published.txt
+          "$NM" -D --defined-only "$rebuilt" | awk '{print $NF}' | sort -u > rebuilt.txt
+          diffs="$(diff published.txt rebuilt.txt | grep -c '^[<>]' || true)"
+          fribidi="$(grep -ac 'FriBidi 1.0.16' "$rebuilt" || true)"
+          echo "::notice title=libass.so::published $(stat -c %s published.so) bytes, $(wc -l < published.txt) symbols. rebuilt $(stat -c %s "$rebuilt") bytes, $(wc -l < rebuilt.txt) symbols. differences $diffs. FriBidi 1.0.16 text $fribidi"
+          test "$diffs" -eq 0
+
+      - name: Report the failure
+        if: failure()
+        run: |
+          [ -f build.log ] || exit 0
+          tail -c 3000 build.log | sed 's/%/%25/g' | awk '{printf "%s%%0A", $0}' > tail.txt
+          echo "::error title=build.log::$(cat tail.txt)"
