@@ -41,7 +41,7 @@ ffmpeg/build_ffmpeg.sh "$PWD/ffmpeg-3f92512" arm64-v8a
 
 cmake -S ffmpeg -B out/ffmpeg -G Ninja \
   -DCMAKE_TOOLCHAIN_FILE="$NDK/build/cmake/android.toolchain.cmake" \
-  -DANDROID_ABI=arm64-v8a -DANDROID_PLATFORM=android-29 -DCMAKE_BUILD_TYPE=Release \
+  -DANDROID_ABI=arm64-v8a -DANDROID_PLATFORM=android-29 -DCMAKE_BUILD_TYPE=RelWithDebInfo \
   -DFFMPEG_DIR="$PWD/ffmpeg-3f92512"
 cmake --build out/ffmpeg
 
@@ -49,7 +49,7 @@ cmake --build out/ffmpeg
 tar xzf lame/lame-3.100.tar.gz
 cmake -S lame -B out/lame -G Ninja \
   -DCMAKE_TOOLCHAIN_FILE="$NDK/build/cmake/android.toolchain.cmake" \
-  -DANDROID_ABI=arm64-v8a -DANDROID_PLATFORM=android-29 -DCMAKE_BUILD_TYPE=Release \
+  -DANDROID_ABI=arm64-v8a -DANDROID_PLATFORM=android-29 -DCMAKE_BUILD_TYPE=RelWithDebInfo \
   -DLAME_DIR="$PWD/lame-3.100"
 cmake --build out/lame
 ```
